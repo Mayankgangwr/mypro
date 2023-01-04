@@ -83,7 +83,7 @@ console.log(parameter.restroid);
               contoinue(parameter.restroid,parameter.tableno);
               navigate(`/${parameter.restroid}/${parameter.tableno}/cart`);
              }
-             } className="text-light" >Continue <i className="fas fa-long-arrow-alt-up"></i></button>
+             } className="btn btn-primary" >Continue <i className="fas fa-long-arrow-alt-up"></i></button>
         </li>
       </ul>
     </div>
