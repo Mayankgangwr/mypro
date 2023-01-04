@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useCookies } from "react-cookie";
 import "./menu.css";
 import { useNavigate, useParams } from "react-router-dom";
 const Rectro = ({ FoodCard, cart, AddCart, show, contoinue }) => {
+  const [cookies, removeCookies] = useCookies(["user"]);
+  if (!cookies.user) {
+    removeCookies();
+  }
   const [input, setInput] = useState("");
+  const [searchdt, setSearchdt] = useState("");
   const [MenuData, setMenuData] = useState([]);
   const parameter = useParams();
   const navigate = useNavigate();
-  console.log(parameter.restroid);
+  console.log(window.location.href);
   useEffect(() => {
     getUsers();
   }, []);
@@ -25,11 +31,24 @@ const Rectro = ({ FoodCard, cart, AddCart, show, contoinue }) => {
     const value = e.target.value;
     setInput(value);
   };
-  const sdata = MenuData.filter((item) => {
-    if (input !== "") {
-      return item.category === input;
+  const Search = (e) => {
+    const value = e.target.value.toUpperCase();
+    setSearchdt(value);
+  };
+  const searchdata = MenuData.filter((item) => {
+    if (searchdt !== "") {
+      const Title = item.title.toUpperCase();
+      return Title.includes(searchdt);
     } else {
-      return item.category !== input;
+      return item.title !== searchdt;
+    }
+  });
+  console.log(searchdata);
+  const sdata = searchdata.filter((item) => {
+    if (input !== "") {
+      return item.cat_id === input;
+    } else {
+      return item.cat_id !== input;
     }
   });
 
@@ -51,11 +70,11 @@ const Rectro = ({ FoodCard, cart, AddCart, show, contoinue }) => {
             <div className="col-6 my-1 mx-0 py-1">
               <select className="form-control" name="cat" onChange={Filtered}>
                 <option value="">Select Cat</option>
-                <option value="Breakfast">Breakfast</option>
-                <option value="Lunch">Lunch</option>
-                <option value="Fastfood">FastFood</option>
-                <option value="Dinner">Dinner</option>
-                <option value="Dinks">Dinks</option>
+                <option value="3">Breakfast</option>
+                <option value="2">Lunch</option>
+                <option value="1">FastFood</option>
+                <option value="4">Dinner</option>
+                <option value="5">Dinks</option>
               </select>
             </div>
             <div className="col-6 py-1 mx-0 my-1">
@@ -63,7 +82,8 @@ const Rectro = ({ FoodCard, cart, AddCart, show, contoinue }) => {
                 type="text"
                 className="form-control"
                 name="name"
-                onChange={Filtered}
+                value={searchdt}
+                onChange={Search}
                 placeholder="Search Food"
               />
             </div>

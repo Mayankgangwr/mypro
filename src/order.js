@@ -5,18 +5,10 @@ import { useCookies } from "react-cookie";
 const OrderData = ({ cart, show }) => {
   const [orderstatus, setOrderstatus] = useState("Preparing");
   const [cookies, setCookie] = useCookies(["user"]);
-  const data = [
-    {
-      data: cart,
-      status: "Preparing",
-    },
-  ];
+  
   if (!cookies.user) {
-    setCookie("user", data, {
-      maxAge: 5,
-    });
+    setCookie("user", [{ data: cart, status: "Preparing" }]);
   }
-
   const amount = cookies.user[0].data.reduce((total, item) => {
     return total + parseInt(item.qty) * parseInt(item.price);
   }, 0);
