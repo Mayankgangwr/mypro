@@ -13,7 +13,7 @@ console.log(parameter.restroid);
         getUsers();
     }, []);
     function getUsers() {
-        axios.get(`http://myrestro.kartelectro.com/read.php?restro_id=${parameter.restroid}`).then(function(response) {
+        axios.get(`https://sattasafari.com/restro/read.php?restro_id=${parameter.restroid}`).then(function(response) {
             console.log(response.data);
             setMenuData(response.data);
         });
