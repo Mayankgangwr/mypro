@@ -17,7 +17,7 @@ const App = () =>{
         getUsers();
     }, []);
     function getUsers() {
-        axios.get('http://myrestro.kartelectro.com/read.php').then(function(response) {
+        axios.get('https://sattasafari.com/restro/read.php').then(function(response) {
             console.log(response.data);
             setMenuData(response.data);
         });
@@ -147,7 +147,7 @@ const PlaceOrder = (e) =>{
     "status":orderstatus,
     "products":JSON.stringify(cart)
   };
-  axios.post('http://myrestro.kartelectro.com/create.php', inputs).then(function(response){
+  axios.post('https://sattasafari.com/restro/create.php', inputs).then(function(response){
       console.log(response.data);
   });
 
