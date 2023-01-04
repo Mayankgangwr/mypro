@@ -185,13 +185,7 @@ const App = () => {
           />
           <Route
             path="/:restroid/:tableno/order"
-            element={
-              <OrderData
-                cart={cart}
-                orderstatus={orderstatus}
-                OnTable={OnTable}
-              />
-            }
+            element={<OrderData cart={cart} />}
           />
         </Routes>
       </BrowserRouter>
