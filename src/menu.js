@@ -105,7 +105,7 @@ const Rectro = ({ FoodCard, cart, AddCart, show, contoinue }) => {
                       `/${parameter.restroid}/${parameter.tableno}/cart`
                     );
                   }}
-                  className="text-light"
+                  className="btn btn-primary"
                 >
                   Continue <i className="fas fa-long-arrow-alt-up"></i>
                 </button>
