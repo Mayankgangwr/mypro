@@ -13,7 +13,7 @@ const Rectro = ({ FoodCard, cart, AddCart, show, contoinue }) => {
   const [MenuData, setMenuData] = useState([]);
   const parameter = useParams();
   const navigate = useNavigate();
-  console.log(window.location.href);
+  console.log(parameter.restroid);
   useEffect(() => {
     getUsers();
   }, []);

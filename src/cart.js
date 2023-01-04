@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
 import "./menu.css";
 const CartData = ({
   cart,
@@ -14,10 +13,6 @@ const CartData = ({
   handleClientName,
 }) => {
   const navigate = useNavigate();
-  const [cookies, removeCookies] = useCookies(["user"]);
-  if (!cookies.user) {
-    removeCookies();
-  }
   const amount = cart.reduce((total, item) => {
     return total + parseInt(item.qty) * parseInt(item.price);
   }, 0);

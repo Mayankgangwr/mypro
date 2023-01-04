@@ -4,11 +4,14 @@ import { useCookies } from "react-cookie";
 
 const OrderData = ({ cart, show }) => {
   const [orderstatus, setOrderstatus] = useState("Preparing");
-  const [cookies, setCookie] = useCookies(["user"]);
-  
-  if (!cookies.user) {
-    setCookie("user", [{ data: cart, status: "Preparing" }]);
+  const [cookies, setCookie, removeCookies] = useCookies(["user"]);
+  if (cart != "") {
+    if (cart != cookies.user[0].data) {
+      removeCookies("user");
+      //setCookie("user", [{ data: cart, status: "Ok" }]);
+    }
   }
+
   const amount = cookies.user[0].data.reduce((total, item) => {
     return total + parseInt(item.qty) * parseInt(item.price);
   }, 0);
