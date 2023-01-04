@@ -8,7 +8,6 @@ const Rectro = ({ FoodCard, cart, AddCart, show, contoinue }) => {
   const parameter = useParams();
   const navigate = useNavigate();
   console.log(parameter.restroid);
-
   useEffect(() => {
     getUsers();
   }, []);
