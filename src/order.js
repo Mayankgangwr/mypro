@@ -1,22 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./menu.css";
 import { useCookies } from "react-cookie";
-
 const OrderData = ({ cart, show }) => {
   const [orderstatus, setOrderstatus] = useState("Preparing");
-  const [cookies, setCookie, removeCookies] = useCookies(["user"]);
-  if (cart.length > 0) {
-    if (JSON.stringify(cart) != JSON.stringify(cookies.user[0].data)) {
-      console.log("Done");
-      removeCookies("user");
-      //setCookie("user", [{ data: cart, status: "Ok" }]);
-    }
-  }
-
-  const amount = cookies.user[0].data.reduce((total, item) => {
+  const [cookies, setCookies] = useCookies("user");
+  const amount = cart.reduce((total, item) => {
     return total + parseInt(item.qty) * parseInt(item.price);
   }, 0);
+    setCookies("user",cart);
   return (
+
     <>
       <section className="main">
         <div className="container-fluid">
@@ -33,8 +26,7 @@ const OrderData = ({ cart, show }) => {
 
           <hr />
           <div className="row">
-            {cookies.user &&
-              cookies.user[0].data.map(
+            {cart.map(
                 ({ id, img, qty, title, mrp, price }) => (
                   <div
                     key={id}
