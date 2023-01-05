@@ -1,34 +1,36 @@
-.nav-link{
-    color: #000 !important;
+.nav-bg {
+  background-color: #de6378;
 }
-.item-logo{
-    width: 70px !important;
-    height: 70px !important;
+.nav-link {
+  color: #000 !important;
 }
-.w-30{
-    width: 30% !important;
+.item-logo {
+  width: 70px !important;
+  height: 70px !important;
+}
+.w-30 {
+  width: 30% !important;
 }
 
 @media only screen and (max-width: 600px) {
-
 }
-input:checked + .card{
+input:checked + .card {
   background-color: #a8a2a26b !important;
 }
 .mrp {
   color: #535665;
   text-decoration: line-through;
 }
-.price{
+.price {
   font-size: 16px;
   font-weight: 500;
 }
-.h-90{
+.h-90 {
   height: 90% !important;
 }
-.pt-2px{
-  padding-top: 2px!important;
+.pt-2px {
+  padding-top: 2px !important;
 }
-.p-qty{
+.p-qty {
   padding: 7px 13px 19px 13px !important;
 }
