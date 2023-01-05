@@ -1,3 +1,8 @@
+.text-style {
+  font-family: Aclonica;
+  text-shadow: rgb(108 103 103) 1.2px 2px 3px;
+  color: rgb(45 2 12 / 86%);
+}
 .nav-bg {
   background-color: #de6378;
 }

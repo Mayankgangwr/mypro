@@ -21,14 +21,7 @@ const CartData = ({
       <nav key="1" className={`navbar  navbar-expand nav-bg`}>
         <div className="container-fluid">
           <div className="collapse navbar-collapse">
-            <div
-              className="text-center me-auto"
-              style={{
-                fontFamily: "Aclonica",
-                textShadow: "1.2px 2px 3px #6c6767",
-                color: "rgb(45 2 12 / 86%);",
-              }}
-            >
+            <div className="text-center me-auto text-style">
               <img
                 src="/images/logo.png"
                 height="40"
