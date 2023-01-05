@@ -18,7 +18,7 @@ const OrderData = ({ cart, show }) => {
         },
       ];
       setCookie("user", data);
-      console.log(cart);
+      console.log(cookies.user[0].data);
     }
   }
   return (
