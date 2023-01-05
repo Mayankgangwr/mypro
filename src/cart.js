@@ -149,7 +149,7 @@ const CartData = ({
                     className="text-center text-danger mt-4"
                     style={{ fontSize: "15px" }}
                   >
-                    Please Dont Reload or Close window Brefore Complete Your
+                    Please Dont Reload or Close window Before Complete Your
                     Order.
                   </p>
                 </div>
