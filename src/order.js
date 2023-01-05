@@ -45,7 +45,7 @@ const OrderData = ({ cart, show }) => {
         <div className="container-fluid">
           <hr />
           <div className="row">
-            {cart.map(({ id, img, qty, title, mrp, price }) => (
+            {cookies.user[0].data.map(({ id, img, qty, title, mrp, price }) => (
               <div
                 key={id}
                 className="col-xl-3 card-item col-lg-4 col-md-6 col-sm-6 col-xs-6 col-12 mt-3"
