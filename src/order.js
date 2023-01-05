@@ -115,7 +115,7 @@ const OrderData = ({ cart, show }) => {
                     className="text-center text-danger mt-4"
                     style={{ fontSize: "15px" }}
                   >
-                    Please Dont Reload or Close window Brefore Getting Order On
+                    Please Dont Reload or Close window Before Getting Order On
                     Table.
                   </p>
                 </div>
