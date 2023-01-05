@@ -139,6 +139,13 @@ const CartData = ({
                   >
                     Go to checkout
                   </button>
+                  <p
+                    className="text-center text-danger mt-4"
+                    style={{ fontSize: "15px" }}
+                  >
+                    Please Dont Reload or Close window Brefore Complete Your
+                    Order.
+                  </p>
                 </div>
               </div>
             </div>

@@ -3,13 +3,25 @@ import "./menu.css";
 import { useCookies } from "react-cookie";
 const OrderData = ({ cart, show }) => {
   const [orderstatus, setOrderstatus] = useState("Preparing");
-  const [cookies, setCookies] = useCookies("user");
+  const [cookies, setCookie] = useCookies("user");
   const amount = cart.reduce((total, item) => {
     return total + parseInt(item.qty) * parseInt(item.price);
   }, 0);
-    setCookies("user",cart);
+  if (cart.length > 0) {
+    console.log("not Null");
+    if (JSON.stringify(cart) !== JSON.stringify(cookies.user)) {
+      console.log("Not match");
+      const data = [
+        {
+          data: cart,
+          status: "Preparing",
+        },
+      ];
+      setCookie("user", data);
+      console.log(cart);
+    }
+  }
   return (
-
     <>
       <section className="main">
         <div className="container-fluid">
@@ -26,40 +38,38 @@ const OrderData = ({ cart, show }) => {
 
           <hr />
           <div className="row">
-            {cart.map(
-                ({ id, img, qty, title, mrp, price }) => (
-                  <div
-                    key={id}
-                    className="col-xl-3 card-item col-lg-4 col-md-6 col-sm-6 col-xs-6 col-12 mt-3"
-                  >
-                    <div className="card">
-                      <div className="card-body p-2">
-                        <div className="d-flex text-black p-0">
-                          <img
-                            src={img}
-                            alt="Generic placeholder image"
-                            className="item-logo"
-                          />
-                          <div className="row ps-3">
-                            <div className="col-12">
-                              <h6 className="text-start">{title}</h6>
-                            </div>
-                            <div className="col-6">
-                              <span className="price sale-price pe-2">
-                                ${price}
-                              </span>
-                              <span className="price mrp">${mrp}</span>
-                            </div>
-                            <div className="col-6 text-end">
-                              <span className="pe-2">Qty: {qty}</span>
-                            </div>
-                          </div>
+            {cart.map(({ id, img, qty, title, mrp, price }) => (
+              <div
+                key={id}
+                className="col-xl-3 card-item col-lg-4 col-md-6 col-sm-6 col-xs-6 col-12 mt-3"
+              >
+                <div className="card">
+                  <div className="card-body p-2">
+                    <div className="d-flex text-black p-0">
+                      <img
+                        src={img}
+                        alt="Generic placeholder image"
+                        className="item-logo"
+                      />
+                      <div className="row ps-3">
+                        <div className="col-12">
+                          <h6 className="text-start">{title}</h6>
+                        </div>
+                        <div className="col-6">
+                          <span className="price sale-price pe-2">
+                            ${price}
+                          </span>
+                          <span className="price mrp">${mrp}</span>
+                        </div>
+                        <div className="col-6 text-end">
+                          <span className="pe-2">Qty: {qty}</span>
                         </div>
                       </div>
                     </div>
                   </div>
-                )
-              )}
+                </div>
+              </div>
+            ))}
 
             <div className={`col-12 ${show} mt-3`}>
               <div className="card mb-4">
@@ -90,10 +100,17 @@ const OrderData = ({ cart, show }) => {
                     onClick={() => {
                       setOrderstatus("On Table");
                     }}
-                    className="btn btn-primary btn-lg btn-block"
+                    className="btn btn-primary btn-lg btn-block mb-3"
                   >
                     Order On Table
                   </button>
+                  <p
+                    className="text-center text-danger mt-4"
+                    style={{ fontSize: "15px" }}
+                  >
+                    Please Dont Reload or Close window Brefore Getting Order On
+                    Table.
+                  </p>
                 </div>
               </div>
             </div>

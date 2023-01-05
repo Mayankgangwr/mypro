@@ -54,7 +54,7 @@ const Rectro = ({ FoodCard, cart, AddCart, show, contoinue }) => {
 
   return (
     <>
-      <section className="main">
+      <section className="main mb-5">
         <div className="container-fluid">
           <h1
             className="text-center mt-3"
