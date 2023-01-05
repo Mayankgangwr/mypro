@@ -18,20 +18,32 @@ const CartData = ({
   }, 0);
   return (
     <>
+      <nav key="1" className={`navbar  navbar-expand nav-bg`}>
+        <div className="container-fluid">
+          <div className="collapse navbar-collapse">
+            <div className="text-center me-auto text-style">
+              <img
+                src="/images/logo.png"
+                height="40"
+                alt="MDB Logo"
+                loading="lazy"
+              />
+            </div>
+            <h1
+              className="me-auto mb-0"
+              style={{
+                fontFamily: "Aclonica",
+                textShadow: "1.2px 2px 3px #6c6767",
+                color: "#d82643",
+              }}
+            >
+              CART
+            </h1>
+          </div>
+        </div>
+      </nav>
       <section className="main">
         <div className="container-fluid">
-          <h1
-            className="text-center mt-3"
-            style={{
-              fontFamily: "Aclonica",
-              textShadow: "1.2px 2px 3px #6c6767",
-              color: "#d82643",
-            }}
-          >
-            MY CART
-          </h1>
-
-          <hr />
           <div className="row">
             {cart.map(({ id, img, qty, title, mrp, price }) => (
               <div
@@ -156,3 +168,5 @@ const CartData = ({
   );
 };
 export default CartData;
+
+
