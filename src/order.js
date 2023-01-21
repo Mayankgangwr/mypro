@@ -1,26 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./menu.css";
-import { useCookies } from "react-cookie";
 const OrderData = ({ cart, show }) => {
   const [orderstatus, setOrderstatus] = useState("Preparing");
-  const [cookies, setCookie] = useCookies("user");
   const amount = cart.reduce((total, item) => {
     return total + parseInt(item.qty) * parseInt(item.price);
   }, 0);
-  if (cart.length > 0) {
-    console.log("not Null");
-    if (JSON.stringify(cart) !== JSON.stringify(cookies.user)) {
-      console.log("Not match");
-      const data = [
-        {
-          data: cart,
-          status: "Preparing",
-        },
-      ];
-      setCookie("user", data);
-      console.log(cart);
+  useEffect(() => {
+    if (localStorage.getItem("ordid") !== null) {
+      console.log(localStorage.getItem("ordid"));
     }
-  }
+  }, []);
+
   return (
     <>
       <nav key="1" className={`navbar  navbar-expand nav-bg`}>
@@ -83,7 +73,12 @@ const OrderData = ({ cart, show }) => {
                 </div>
               </div>
             ))}
-
+            <h1>
+              Wellcome{" "}
+              <span style={{ color: "red" }}>
+                {localStorage.getItem("ordid")}
+              </span>
+            </h1>
             <div className={`col-12 ${show} mt-3`}>
               <div className="card mb-4">
                 <div className="card-header d-flex justify-content-between py-3">

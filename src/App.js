@@ -24,6 +24,7 @@ const App = () => {
         setMenuData(response.data);
       });
   }
+  console.log(MenuData);
   const [orderstatus, setOrderstatus] = useState("Preparing");
   const [cart, setCart] = useState([]);
   const [show, setShow] = useState("d-none");
@@ -40,19 +41,17 @@ const App = () => {
       if (isdata == false) {
         MenuData.filter((item) => {
           if (item.id == value) {
-            setCart([
-              ...cart,
-              {
-                id: item.id,
-                title: item.title,
-                mrp: item.mrp,
-                price: item.price,
-                img: item.img,
-                restro_id: item.restro_id,
-                category: item.category,
-                qty: 1,
-              },
-            ]);
+            const NewObj = {
+              id: item.id,
+              title: item.title,
+              mrp: item.mrp,
+              price: item.price,
+              img: item.img,
+              restro_id: item.restro_id,
+              category: item.category,
+              qty: 1,
+            };
+            setCart([...cart, NewObj]);
           }
         });
       }
@@ -65,6 +64,7 @@ const App = () => {
       );
     }
   };
+  console.log(cart);
   const deleteCart = (e) => {
     const id = e.target.getAttribute("data-id");
     const newCart = cart.filter((item) => {
@@ -147,10 +147,10 @@ const App = () => {
     axios
       .post("https://sattasafari.com/restro/create.php", inputs)
       .then(function (response) {
-        console.log(response.data);
+        console.log(response.data.ordid);
+        localStorage.setItem("ordid", response.data.ordid);
       });
   };
-
   return (
     <>
       <BrowserRouter>
