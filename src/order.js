@@ -1,16 +1,38 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./menu.css";
+import axios from "axios";
 const OrderData = ({ cart, show }) => {
-  const [orderstatus, setOrderstatus] = useState("Preparing");
+  const navigate = useNavigate();
+  const [urord, setUrord] = useState("");
+  useEffect(() => {
+    axios
+      .get(
+        `https://sattasafari.com/restro/ordread.php?ordid=${localStorage.getItem(
+          "ordid"
+        )}`
+      )
+      .then(function (response) {
+        console.log(response.data);
+        setUrord(response.data);
+      });
+  }, []);
+
   const amount = cart.reduce((total, item) => {
     return total + parseInt(item.qty) * parseInt(item.price);
   }, 0);
-  useEffect(() => {
-    if (localStorage.getItem("ordid") !== null) {
-      console.log(localStorage.getItem("ordid"));
-    }
-  }, []);
-
+  const OrdStatus = (e) => {
+    e.preventDefault();
+    const data = {
+      ordid: localStorage.getItem("ordid"),
+      ordstatus: "On Table",
+    };
+    axios
+      .post("https://sattasafari.com/restro/updateord.php", data)
+      .then(function (response) {
+        alert(response.data.message);
+      });
+  };
   return (
     <>
       <nav key="1" className={`navbar  navbar-expand nav-bg`}>
@@ -73,17 +95,11 @@ const OrderData = ({ cart, show }) => {
                 </div>
               </div>
             ))}
-            <h1>
-              Wellcome{" "}
-              <span style={{ color: "red" }}>
-                {localStorage.getItem("ordid")}
-              </span>
-            </h1>
             <div className={`col-12 ${show} mt-3`}>
               <div className="card mb-4">
                 <div className="card-header d-flex justify-content-between py-3">
                   <h5 className="mb-0">Summary</h5>
-                  <h6 className="text-danger pt-1 mb-0">{orderstatus}</h6>
+                  <h6 className="text-danger pt-1 mb-0">{urord.status}</h6>
                 </div>
                 <div className="card-body">
                   <ul className="list-group list-group-flush">
@@ -105,9 +121,7 @@ const OrderData = ({ cart, show }) => {
                     </li>
                   </ul>
                   <button
-                    onClick={() => {
-                      setOrderstatus("On Table");
-                    }}
+                    onClick={OrdStatus}
                     className="btn btn-primary btn-lg btn-block mb-3"
                   >
                     Order On Table
