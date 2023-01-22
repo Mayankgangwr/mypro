@@ -147,7 +147,8 @@ const App = () => {
     axios
       .post("https://sattasafari.com/restro/create.php", inputs)
       .then(function (response) {
-        console.log(response.data);
+        console.log(response.data.ordid);
+        window.localStorage.setItem("ordid", response.data.ordid);
       });
   };
 
