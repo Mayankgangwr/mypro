@@ -149,6 +149,7 @@ const App = () => {
       .then(function (response) {
         console.log(response.data.ordid);
         window.localStorage.setItem("ordid", response.data.ordid);
+        window.localStorage.setItem("orddata", JSON.stringify(cart));
       });
   };
 
