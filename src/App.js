@@ -190,6 +190,10 @@ const App = () => {
             path="/:restroid/:tableno/order"
             element={<OrderData cart={cart} />}
           />
+          <Route
+            path="/:restroid/:tableno/order"
+            element={<OrderData cart={cart} />}
+          />
         </Routes>
       </BrowserRouter>
     </>
