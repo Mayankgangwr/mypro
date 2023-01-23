@@ -29,10 +29,7 @@ const CartData = ({
                 loading="lazy"
               />
             </div>
-            <h1
-              className="me-auto mb-0  text-style">
-              CART
-            </h1>
+            <h1 className="me-auto mb-0  text-style">CART</h1>
           </div>
         </div>
       </nav>
@@ -133,9 +130,8 @@ const CartData = ({
                       if (clientname != "") {
                         PlaceOrder();
                         if (amount > 0) {
-                          navigate(
-                            `/${restrodata.id}/${restrodata.tableno}/order`
-                          );
+                          window.location.href = `/${restrodata.id}/${restrodata.tableno}/order`;
+                          //navigate();
                         }
                       } else {
                         alert("Enter Your Name");
@@ -162,5 +158,3 @@ const CartData = ({
   );
 };
 export default CartData;
-
-
