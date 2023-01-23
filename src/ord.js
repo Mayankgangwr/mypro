@@ -146,14 +146,11 @@ const OrdData = () => {
                       Order On Table
                     </button>
                   )}
-                  {orderdatas.status === "On Table" && (
-                    <button
-                      onClick={() => updateord(orderdatas.id)}
-                      className="btn btn-primary btn-lg btn-block mb-3"
-                    >
-                      Get Invoice
+                  {/*orderdatas.status === "On Table" && (
+                    <button className="btn btn-info btn-lg btn-block mb-3">
+                      Got Order
                     </button>
-                  )}
+                  )*/}
                 </div>
               </div>
             </div>
