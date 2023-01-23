@@ -34,10 +34,7 @@ const OrderData = ({ cart, show }) => {
                 loading="lazy"
               />
             </div>
-            <h1
-              className="me-auto mb-0  text-style">
-              MY ORDER
-            </h1>
+            <h1 className="me-auto mb-0  text-style">MY ORDER</h1>
           </div>
         </div>
       </nav>

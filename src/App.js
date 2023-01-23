@@ -188,10 +188,10 @@ const App = () => {
             }
           />
           <Route
-            path="/:restroid/:tableno/order"
+            path="/:restroid/:tableno/ord"
             element={<OrderData cart={cart} />}
           />
-          <Route path="/:restroid/:tableno/ord" element={<OrdData />} />
+          <Route path="/:restroid/:tableno/order" element={<OrdData />} />
         </Routes>
       </BrowserRouter>
     </>
