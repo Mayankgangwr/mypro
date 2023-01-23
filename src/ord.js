@@ -21,19 +21,35 @@ const OrdData = () => {
         )}`
       )
       .then(function (response) {
-        setOrderdatas(response.data);
-        setCartdatas(JSON.parse(response.data.products));
+        if (
+          localStorage.getItem("orddata") == "" ||
+          localStorage.getItem("orddata") !== response.data.products
+        ) {
+          navigate("/");
+        } else {
+          setOrderdatas(response.data);
+          setCartdatas(JSON.parse(response.data.products));
+        }
       });
   }
-  console.log(
-    cartdatas.reduce((total, item) => {
-      return total + parseInt(item.qty) * parseInt(item.price);
-    }, 0)
-  );
+
   const cart = JSON.parse(localStorage.getItem("orddata"));
   const amount = cart.reduce((total, item) => {
     return total + parseInt(item.qty) * parseInt(item.price);
   }, 0);
+  const updateord = (id) => {
+    const productdata = {
+      productid: id,
+      productstatus: "On Table",
+    };
+    if (productdata.productstatus !== "") {
+      axios
+        .post("https://sattasafari.com/restro/order/update.php", productdata)
+        .then(function (response) {
+          getOrds();
+        });
+    }
+  };
   return (
     <>
       <nav key="1" className={`navbar  navbar-expand nav-bg`}>
@@ -90,9 +106,18 @@ const OrdData = () => {
 
             <div className={`col-12 mt-3`}>
               <div className="card mb-4">
-                <div className="card-header d-flex justify-content-between py-3">
-                  <h5 className="mb-0">Summary</h5>
-                  <h6 className="text-danger pt-1 mb-0">{orderdatas.status}</h6>
+                <div className="card-header">
+                  <div className=" d-flex justify-content-center">
+                    <h5 className="mb-0 text-decoration-underline">Summary</h5>
+                  </div>
+                  <div className=" d-flex justify-content-between pt-2 pb-1">
+                    <h6 className="text-success pt-1 mb-0">
+                      {orderdatas.date}
+                    </h6>
+                    <h6 className="text-danger pt-1 mb-0">
+                      {orderdatas.status}
+                    </h6>
+                  </div>
                 </div>
                 <div className="card-body">
                   <ul className="list-group list-group-flush">
@@ -113,16 +138,22 @@ const OrdData = () => {
                       </span>
                     </li>
                   </ul>
-                  <button className="btn btn-primary btn-lg btn-block mb-3">
-                    Order On Table
-                  </button>
-                  <p
-                    className="text-center text-danger mt-4"
-                    style={{ fontSize: "15px" }}
-                  >
-                    Please Dont Reload or Close window Before Getting Order On
-                    Table.
-                  </p>
+                  {orderdatas.status !== "On Table" && (
+                    <button
+                      onClick={() => updateord(orderdatas.id)}
+                      className="btn btn-primary btn-lg btn-block mb-3"
+                    >
+                      Order On Table
+                    </button>
+                  )}
+                  {orderdatas.status === "On Table" && (
+                    <button
+                      onClick={() => updateord(orderdatas.id)}
+                      className="btn btn-primary btn-lg btn-block mb-3"
+                    >
+                      Get Invoice
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
