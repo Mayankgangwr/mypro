@@ -5,6 +5,7 @@ import Rectro from "./menu";
 import FoodCard from "./foodcard";
 import Cart from "./cart";
 import OrderData from "./order";
+import OrdData from "./ord";
 //import MenuData from "./menudata";
 const App = () => {
   const [clientname, setClientname] = useState("");
@@ -190,10 +191,7 @@ const App = () => {
             path="/:restroid/:tableno/order"
             element={<OrderData cart={cart} />}
           />
-          <Route
-            path="/:restroid/:tableno/order"
-            element={<OrderData cart={cart} />}
-          />
+          <Route path="/:restroid/:tableno/ord" element={<OrdData />} />
         </Routes>
       </BrowserRouter>
     </>
