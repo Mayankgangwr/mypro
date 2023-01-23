@@ -25,7 +25,7 @@ const App = () => {
         setMenuData(response.data);
       });
   }
-  const [orderstatus, setOrderstatus] = useState("Pending");
+  const [orderstatus, setOrderstatus] = useState("pending");
   const [cart, setCart] = useState([]);
   const [show, setShow] = useState("d-none");
   const AddCart = (e) => {
