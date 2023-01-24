@@ -13,6 +13,7 @@ const OrdData = () => {
       getOrds();
     }, []);
   }
+
   function getOrds() {
     axios
       .get(
