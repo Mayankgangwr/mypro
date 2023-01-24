@@ -137,6 +137,8 @@ const App = () => {
     setClientname(value);
   };
   const PlaceOrder = (e) => {
+    localStorage.removeItem("ordid");
+        localStorage.removeItem("orddata");
     //e.preventDefault();
     const inputs = {
       client_name: clientname,
