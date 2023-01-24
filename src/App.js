@@ -25,7 +25,7 @@ const App = () => {
         setMenuData(response.data);
       });
   }
-  const [orderstatus, setOrderstatus] = useState("Preparing");
+  const [orderstatus, setOrderstatus] = useState("pending");
   const [cart, setCart] = useState([]);
   const [show, setShow] = useState("d-none");
   const AddCart = (e) => {
@@ -137,6 +137,8 @@ const App = () => {
     setClientname(value);
   };
   const PlaceOrder = (e) => {
+    localStorage.removeItem("ordid");
+        localStorage.removeItem("orddata");
     //e.preventDefault();
     const inputs = {
       client_name: clientname,
