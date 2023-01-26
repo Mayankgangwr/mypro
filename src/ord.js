@@ -148,8 +148,11 @@ const OrdData = () => {
                     </button>
                   )}
                   {orderdatas.status === "On Table" && (
-                    <button className="btn btn-info btn-lg btn-block mb-3">
-                      Got Order
+                    <button
+                      onClick={() => navigate(`/bill/${orderdatas.id}`)}
+                      className="btn btn-info btn-lg btn-block mb-3"
+                    >
+                      Get Invoice
                     </button>
                   )}
                 </div>
