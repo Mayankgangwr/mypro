@@ -9,10 +9,11 @@ const OrdData = () => {
   const params = useParams();
   useEffect(() => {
     getOrds();
-    if (localStorage.getItem("orddata") == "") {
-      navigate(`/${params.restroid}/${params.tableno}`);
+    if (localStorage.getItem("orddata") === "") {
+      navigate(-1);
+      //console.log("no data");
     }
-  }, []);
+  });
   function getOrds() {
     axios
       .get(

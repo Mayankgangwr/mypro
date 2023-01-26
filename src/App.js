@@ -9,7 +9,6 @@ import OrdData from "./ord";
 import Bill from "./bill";
 //import MenuData from "./menudata";
 const App = () => {
-  const params = useParams();
   const [clientname, setClientname] = useState("");
   const [restrodata, setRestroData] = useState({
     id: "",
@@ -138,7 +137,7 @@ const App = () => {
     const value = e.target.value;
     setClientname(value);
   };
-  const PlaceOrder = (e) => {
+  const PlaceOrder = (restroid) => {
     //e.preventDefault();
     const inputs = {
       client_name: clientname,
@@ -157,7 +156,7 @@ const App = () => {
           localStorage.getItem("ordid") == response.data.ordid &&
           localStorage.getItem("orddata") != ""
         ) {
-          window.location.href = `/${params.restroid}/${params.tableno}/order`;
+          window.location.href = `/${restrodata.id}/${restrodata.tableno}/order`;
         }
       });
   };
