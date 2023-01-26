@@ -7,13 +7,12 @@ const OrdData = () => {
   const [cartdatas, setCartdatas] = useState("");
   const navigate = useNavigate();
   const params = useParams();
-  if (localStorage.getItem("orddata") == "") {
-    navigate(`/${params.restroid}/${params.tableno}`);
-  } else {
-    useEffect(() => {
-      getOrds();
-    }, []);
-  }
+  useEffect(() => {
+    getOrds();
+    if (localStorage.getItem("orddata") == "") {
+      navigate(`/${params.restroid}/${params.tableno}`);
+    }
+  }, []);
   function getOrds() {
     axios
       .get(
