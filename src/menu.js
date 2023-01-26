@@ -15,6 +15,8 @@ const Rectro = ({ FoodCard, cart, AddCart, show, contoinue }) => {
   const navigate = useNavigate();
   console.log(parameter.restroid);
   useEffect(() => {
+    localStorage.removeItem("ordid");
+    localStorage.removeItem("orddata");
     getUsers();
   }, []);
   function getUsers() {
@@ -65,11 +67,7 @@ const Rectro = ({ FoodCard, cart, AddCart, show, contoinue }) => {
                 loading="lazy"
               />
             </div>
-            <h1
-              className="me-auto mb-0  text-style"
-             >
-              MENU
-            </h1>
+            <h1 className="me-auto mb-0  text-style">MENU</h1>
           </div>
         </div>
       </nav>

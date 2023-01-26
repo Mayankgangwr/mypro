@@ -25,7 +25,6 @@ const Bill = () => {
   const printReceipt = () => {
     window.print();
     // console.log("printed");
-    navigate(-1);
   };
 
   return (
