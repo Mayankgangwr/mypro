@@ -3,7 +3,6 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import "./bill.css";
 const Bill = () => {
-  const params = useParams();
   const [billdata, setBilldata] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
@@ -102,12 +101,20 @@ const Bill = () => {
                       </tbody>
                     </table>
                   </div>
-                  <button
-                    class="btn btn-primary hide-on-print"
-                    onClick={printReceipt}
-                  >
-                    Print
-                  </button>
+                  <div className="d-flex justify-content-between mt-2">
+                    <button
+                      class="btn btn-info hide-on-print"
+                      onClick={() => navigate(-1)}
+                    >
+                      Back
+                    </button>
+                    <button
+                      class="btn btn-primary hide-on-print"
+                      onClick={printReceipt}
+                    >
+                      Print
+                    </button>
+                  </div>
                 </div>
               ))}
           </div>
