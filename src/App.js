@@ -6,6 +6,7 @@ import FoodCard from "./foodcard";
 import Cart from "./cart";
 import OrderData from "./order";
 import OrdData from "./ord";
+import Bill from "./bill";
 //import MenuData from "./menudata";
 const App = () => {
   const [clientname, setClientname] = useState("");
@@ -138,7 +139,7 @@ const App = () => {
   };
   const PlaceOrder = (e) => {
     localStorage.removeItem("ordid");
-        localStorage.removeItem("orddata");
+    localStorage.removeItem("orddata");
     //e.preventDefault();
     const inputs = {
       client_name: clientname,
@@ -194,6 +195,7 @@ const App = () => {
             element={<OrderData cart={cart} />}
           />
           <Route path="/:restroid/:tableno/order" element={<OrdData />} />
+          <Route path="/bill" element={<Bill />} />
         </Routes>
       </BrowserRouter>
     </>

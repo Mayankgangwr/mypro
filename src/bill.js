@@ -7,15 +7,18 @@ const Bill = () => {
   const [billdata, setBilldata] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
-    getOrd();
+    getOrdBill();
   }, []);
-  function getOrd() {
-    const restroid = localStorage.getItem("restroid");
+  function getOrdBill() {
+    //const restroid = localStorage.getItem("restroid");
     axios
       .get(
-        `https://sattasafari.com/restro/order/single.php?ordid=${params.ordid}`
+        `https://sattasafari.com/restro/order/single.php?ordid=${localStorage.getItem(
+          "ordid"
+        )}`
       )
       .then(function (response) {
+        console.log(response.data[0]);
         setBilldata(response.data);
       });
   }
@@ -34,7 +37,7 @@ const Bill = () => {
               billdata.map((el) => (
                 <div key={el.id} className="main-bill ms-auto me-auto">
                   <h6 className="card-title text-center text-danger mt-1">
-                    {localStorage.getItem("restrotitle")}
+                    {el.restro_name}
                   </h6>
                   <hr />
                   <div className="card-header ms-1 px-3 mt-4 pb-0">
