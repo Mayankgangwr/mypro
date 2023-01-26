@@ -9,6 +9,7 @@ import OrdData from "./ord";
 import Bill from "./bill";
 //import MenuData from "./menudata";
 const App = () => {
+  const params = useParams();
   const [clientname, setClientname] = useState("");
   const [restrodata, setRestroData] = useState({
     id: "",
@@ -152,6 +153,12 @@ const App = () => {
         console.log(response.data.ordid);
         window.localStorage.setItem("ordid", response.data.ordid);
         window.localStorage.setItem("orddata", JSON.stringify(cart));
+        if (
+          localStorage.getItem("ordid") == response.data.ordid &&
+          localStorage.getItem("orddata") != ""
+        ) {
+          window.location.href = `/${params.restroid}/${params.tableno}/order`;
+        }
       });
   };
 

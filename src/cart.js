@@ -129,10 +129,6 @@ const CartData = ({
                     onClick={() => {
                       if (clientname != "") {
                         PlaceOrder();
-                        if (amount > 0) {
-                          window.location.href = `/${restrodata.id}/${restrodata.tableno}/order`;
-                          //navigate();
-                        }
                       } else {
                         alert("Enter Your Name");
                       }
