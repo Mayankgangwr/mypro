@@ -1,35 +1,35 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./menu.css";
 const OrdData = () => {
   const [orderdatas, setOrderdatas] = useState("");
   const [cartdatas, setCartdatas] = useState("");
   const navigate = useNavigate();
+  const params = useParams();
   if (localStorage.getItem("orddata") == "") {
-    navigate("/");
+    navigate(`/${params.restroid}/${params.tableno}`);
   } else {
     useEffect(() => {
       getOrds();
     }, []);
   }
-
   function getOrds() {
     axios
       .get(
-        `https://sattasafari.com/restro/ordread.php?ordid=${localStorage.getItem(
+        `https://sattasafari.com/restro/order/single.php?ordid=${localStorage.getItem(
           "ordid"
         )}`
       )
       .then(function (response) {
         if (
           localStorage.getItem("orddata") == "" ||
-          localStorage.getItem("orddata") !== response.data.products
+          localStorage.getItem("orddata") !== response.data[0].products
         ) {
-          navigate("/");
+          navigate(`/${params.restroid}/${params.tableno}`);
         } else {
-          setOrderdatas(response.data);
-          setCartdatas(JSON.parse(response.data.products));
+          setOrderdatas(response.data[0]);
+          setCartdatas(JSON.parse(response.data[0].products));
         }
       });
   }
@@ -147,11 +147,11 @@ const OrdData = () => {
                       Order On Table
                     </button>
                   )}
-                  {/*orderdatas.status === "On Table" && (
+                  {orderdatas.status === "On Table" && (
                     <button className="btn btn-info btn-lg btn-block mb-3">
                       Got Order
                     </button>
-                  )*/}
+                  )}
                 </div>
               </div>
             </div>
