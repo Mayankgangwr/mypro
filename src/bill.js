@@ -101,15 +101,15 @@ const Bill = () => {
                       </tbody>
                     </table>
                   </div>
-                  <div className="d-flex justify-content-between mt-2">
+                  <div className="d-flex justify-content-between mt-3">
                     <button
-                      class="btn btn-info hide-on-print"
+                      class="btn btn-primary hide-on-print"
                       onClick={() => navigate(-1)}
                     >
                       Back
                     </button>
                     <button
-                      class="btn btn-primary hide-on-print"
+                      class="btn btn-success hide-on-print"
                       onClick={printReceipt}
                     >
                       Print
