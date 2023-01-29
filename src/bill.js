@@ -12,9 +12,9 @@ const Bill = () => {
     //const restroid = localStorage.getItem("restroid");
     axios
       .get(
-        `https://sattasafari.com/restro/order/single.php?ordid=${localStorage.getItem(
-          "ordid"
-        )}`
+        `${
+          process.env.REACT_APP_BASEURL
+        }/restro/order/single.php?ordid=${localStorage.getItem("ordid")}`
       )
       .then(function (response) {
         console.log(response.data[0]);

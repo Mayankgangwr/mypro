@@ -20,7 +20,7 @@ const App = () => {
   }, []);
   function getUsers() {
     axios
-      .get(`https://sattasafari.com/restro/read.php`)
+      .get(`${process.env.REACT_APP_BASEURL}/restro/read.php`)
       .then(function (response) {
         console.log(response.data);
         setMenuData(response.data);
@@ -147,7 +147,7 @@ const App = () => {
       products: JSON.stringify(cart),
     };
     axios
-      .post("https://sattasafari.com/restro/create.php", inputs)
+      .post(`${process.env.REACT_APP_BASEURL}/restro/create.php`, inputs)
       .then(function (response) {
         console.log(response.data.ordid);
         window.localStorage.setItem("ordid", response.data.ordid);

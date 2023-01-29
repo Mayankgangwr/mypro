@@ -13,6 +13,7 @@ const Rectro = ({ FoodCard, cart, AddCart, show, contoinue }) => {
   const [MenuData, setMenuData] = useState([]);
   const parameter = useParams();
   const navigate = useNavigate();
+  const url = "https://sattasafari.com";
   console.log(parameter.restroid);
   useEffect(() => {
     localStorage.removeItem("ordid");
@@ -22,7 +23,7 @@ const Rectro = ({ FoodCard, cart, AddCart, show, contoinue }) => {
   function getUsers() {
     axios
       .get(
-        `https://sattasafari.com/restro/read.php?restro_id=${parameter.restroid}`
+        `${process.env.REACT_APP_BASEURL}/restro/read.php?restro_id=${parameter.restroid}`
       )
       .then(function (response) {
         console.log(response.data);
@@ -67,9 +68,7 @@ const Rectro = ({ FoodCard, cart, AddCart, show, contoinue }) => {
                 loading="lazy"
               />
             </div>
-            <h1 className="me-auto mb-0  text-style">
-              {process.env.REACT_APP_TITLE}
-            </h1>
+            <h1 className="me-auto mb-0  text-style">Menu</h1>
           </div>
         </div>
       </nav>
