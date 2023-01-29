@@ -67,7 +67,9 @@ const Rectro = ({ FoodCard, cart, AddCart, show, contoinue }) => {
                 loading="lazy"
               />
             </div>
-            <h1 className="me-auto mb-0  text-style">MENU</h1>
+            <h1 className="me-auto mb-0  text-style">
+              {process.env.REACT_APP_TITLE}
+            </h1>
           </div>
         </div>
       </nav>

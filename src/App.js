@@ -20,7 +20,7 @@ const App = () => {
   }, []);
   function getUsers() {
     axios
-      .get("https://sattasafari.com/restro/read.php")
+      .get(`https://sattasafari.com/restro/read.php`)
       .then(function (response) {
         console.log(response.data);
         setMenuData(response.data);
