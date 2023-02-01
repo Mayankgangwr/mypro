@@ -41,7 +41,7 @@ const OrdData = () => {
   const updateord = (id) => {
     const productdata = {
       productid: id,
-      productstatus: "On Table",
+      productstatus: "ontable",
     };
     if (productdata.productstatus !== "") {
       axios
