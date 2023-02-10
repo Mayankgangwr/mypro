@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import Rectro from "./menu";
+import Home from "./home";
 import FoodCard from "./foodcard";
 import Cart from "./cart";
 import OrderData from "./order";
@@ -165,6 +166,7 @@ const App = () => {
     <>
       <BrowserRouter>
         <Routes>
+          <Route index element={<Home />} />
           <Route
             path="/:restroid/:tableno"
             element={
