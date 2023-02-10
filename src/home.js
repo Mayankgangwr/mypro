@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-
+import Nav from "./Homes/nav";
 const Home = () => {
   return (
     <>
-      <div></div>
+      <Nav />
     </>
   );
 };
