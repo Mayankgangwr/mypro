@@ -23,7 +23,7 @@ function Nav() {
 
   return (
     <AppBar
-      position="static"
+      position="fixed"
       sx={{
         background:
           "linear-gradient(110deg, #fdcd3b 40%, #494120 40%, #ffed4b 40%)",
