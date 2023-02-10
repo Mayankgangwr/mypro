@@ -142,7 +142,7 @@ const OrdData = () => {
                       </span>
                     </li>
                   </ul>
-                  {orderdatas.status !== "On Table" && (
+                  {orderdatas.status !== "ontable" && (
                     <button
                       onClick={() => updateord(orderdatas.id)}
                       className="btn btn-primary btn-lg btn-block mb-3"
@@ -150,7 +150,7 @@ const OrdData = () => {
                       Order On Table
                     </button>
                   )}
-                  {orderdatas.status === "On Table" && (
+                  {orderdatas.status === "ontable" && (
                     <button
                       onClick={() => navigate(`/bill`)}
                       className="btn btn-info btn-lg btn-block mb-3"
