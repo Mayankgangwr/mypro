@@ -1,6 +1,59 @@
 .banner-text-position {
   padding-top: 100px;
 }
+.main-section {
+  margin-top: 56px;
+}
+.card-height {
+  height: 290px;
+}
+.card-height h3 {
+  color: #000;
+}
+.card-height p {
+  color: #000;
+}
+.col10 {
+  flex: 0 0 auto;
+  width: 10%;
+  padding: 0px 3px;
+  margin-top: 5px;
+}
+@media screen and (max-width: 1000px) {
+  .col10 {
+    width: 12.5%;
+  }
+}
+@media screen and (max-width: 900px) {
+  .col10 {
+    width: 14.28%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .col10 {
+    width: 16.66%;
+  }
+}
+@media screen and (max-width: 700px) {
+  .col10 {
+    width: 20%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .col10 {
+    width: 25%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .col10 {
+    width: 33.33%;
+  }
+}
+@media screen and (max-width: 400px) {
+  .col10 {
+    width: 50%;
+  }
+}
 @media screen and (max-width: 975px) {
   .banner-text-position {
     padding-top: 5px;
