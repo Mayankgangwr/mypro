@@ -421,6 +421,11 @@ const Banner = () => {
             </div>
           </div>
         </div>
+        <div className="row">
+          <div className="col-12 mt-5">
+            <h3 className="text-center">Contact Us</h3>
+          </div>
+        </div>
       </div>
     </>
   );
