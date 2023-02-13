@@ -34,7 +34,7 @@ const Footer = () => {
             <div className="row mt-3">
               <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                 <h6
-                  className="text-uppercase d-flex fw-bold mb-4"
+                  className="text-uppercase d-flex footer-title fw-bold mb-2"
                   style={{ color: "#000" }}
                 >
                   MY<div style={{ color: "rgb(255 255 255)" }}>RESTRO</div>
@@ -45,7 +45,7 @@ const Footer = () => {
                 </p>
               </div>
               <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                <h6 className="text-uppercase text-light fw-bold mb-4">
+                <h6 className="text-uppercase text-light fw-bold mb-2">
                   Products
                 </h6>
                 <p>
@@ -70,7 +70,7 @@ const Footer = () => {
                 </p>
               </div>
               <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                <h6 className="text-uppercase text-light fw-bold mb-4">
+                <h6 className="text-uppercase text-light fw-bold mb-2">
                   Useful links
                 </h6>
                 <p>
@@ -95,7 +95,7 @@ const Footer = () => {
                 </p>
               </div>
               <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                <h6 className="text-uppercase text-light fw-bold mb-4">
+                <h6 className="text-uppercase text-light fw-bold mb-2">
                   Contact
                 </h6>
                 <p className="footer-text-color">

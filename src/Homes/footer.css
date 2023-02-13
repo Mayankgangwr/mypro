@@ -8,6 +8,14 @@
   color: #fff;
   font-weight: lighter;
 }
-footer-section p {
+p {
   margin-bottom: 4px !important;
+}
+.footer-title {
+  justify-content: left;
+}
+@media screen and (max-width: 500px) {
+  .footer-title {
+    justify-content: center;
+  }
 }
