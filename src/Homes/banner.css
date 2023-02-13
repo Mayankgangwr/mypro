@@ -5,6 +5,10 @@
   margin-top: 56px;
   background: linear-gradient(110deg, #fdcd3b 36%, #ffed4b 36%);
 }
+.main-section1 {
+}
+.main-section2 {
+}
 .card-height {
   height: 290px;
 }
@@ -51,6 +55,14 @@
   }
   .main-section {
     background: linear-gradient(110deg, #fdcd3b 36%, #ffed4b 36%);
+  }
+  .main-section1 {
+    background: linear-gradient(66deg, #ffed4b 61%, #fdcd3b 40%);
+    height: auto;
+  }
+  .main-section2 {
+    background: linear-gradient(105deg, #ffed4c 41%, #fdcd3b 40%);
+    height: auto;
   }
 }
 @media screen and (max-width: 400px) {

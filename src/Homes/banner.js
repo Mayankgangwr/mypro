@@ -10,7 +10,7 @@ const Banner = () => {
           width: "100%",
         }}
       >
-        <div className="row">
+        <div className="row main-section1">
           <div className="col-lg-5 col-md-6 col-sm-6 col-12 text-center px-lg-5 px-md-5 px-sm-4 px-2 banner-text-position">
             <h2
               class="mb-4 mt-5"
@@ -36,7 +36,7 @@ const Banner = () => {
             />
           </div>
         </div>
-        <div className="row">
+        <div className="row main-section2">
           <div className="col-12 mt-3">
             <h3 className="text-center">Our Services</h3>
           </div>
