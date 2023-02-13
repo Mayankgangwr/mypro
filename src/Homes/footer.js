@@ -46,26 +46,26 @@ const Footer = () => {
               </div>
               <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
                 <h6 className="text-uppercase text-light fw-bold mb-2">
-                  Products
+                  IMPORTANTS
                 </h6>
                 <p>
                   <a href="#!" className="footer-text-color">
-                    Angular
+                    Be a Partner
                   </a>
                 </p>
                 <p>
                   <a href="#!" className="footer-text-color">
-                    React
+                    Get your Website
                   </a>
                 </p>
                 <p>
                   <a href="#!" className="footer-text-color">
-                    Vue
+                    Check Our Websites
                   </a>
                 </p>
                 <p>
                   <a href="#!" className="footer-text-color">
-                    Laravel
+                    Request For Demo
                   </a>
                 </p>
               </div>
@@ -75,22 +75,22 @@ const Footer = () => {
                 </h6>
                 <p>
                   <a href="#!" className="footer-text-color">
-                    Pricing
+                    About Us
                   </a>
                 </p>
                 <p>
                   <a href="#!" className="footer-text-color">
-                    Settings
+                    Contact Us
                   </a>
                 </p>
                 <p>
                   <a href="#!" className="footer-text-color">
-                    Orders
+                    {`Term & Condition`}
                   </a>
                 </p>
                 <p>
                   <a href="#!" className="footer-text-color">
-                    Help
+                    Privacy Policy
                   </a>
                 </p>
               </div>

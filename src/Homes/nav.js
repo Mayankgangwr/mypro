@@ -9,7 +9,13 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
-const pages = ["Products", "Pricing", "Blog"];
+const pages = [
+  "Services",
+  "Check Websites",
+  "About Us",
+  "Contact Us",
+  "Get Demo",
+];
 function Nav() {
   const [anchorElNav, setAnchorElNav] = useState("");
 
@@ -48,7 +54,12 @@ function Nav() {
           >
             MY<div style={{ color: "rgb(10 9 9)" }}>RESTRO</div>
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "flex", md: "none" },
+            }}
+          >
             <IconButton
               size="large"
               aria-label="account of current user"
