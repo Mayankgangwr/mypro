@@ -8,7 +8,6 @@ const Banner = () => {
         className="container-fluid pb-5 main-section"
         style={{
           width: "100%",
-          background: "linear-gradient(110deg, #fdcd3b 36%, #ffed4b 36%)",
         }}
       >
         <div className="row">

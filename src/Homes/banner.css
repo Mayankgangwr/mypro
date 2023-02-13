@@ -3,6 +3,7 @@
 }
 .main-section {
   margin-top: 56px;
+  background: linear-gradient(110deg, #fdcd3b 36%, #ffed4b 36%);
 }
 .card-height {
   height: 290px;
@@ -47,6 +48,9 @@
 @media screen and (max-width: 500px) {
   .col10 {
     width: 33.33%;
+  }
+  .main-section {
+    background: linear-gradient(110deg, #fdcd3b 36%, #ffed4b 36%);
   }
 }
 @media screen and (max-width: 400px) {
