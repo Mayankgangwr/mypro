@@ -74,7 +74,10 @@ const Footer = () => {
                   Useful links
                 </h6>
                 <p>
-                  <a href="#!" className="footer-text-color">
+                  <a
+                    href="upi://pay?pn=Mayank%20Gangwar&pa=8755507582@ybl&cu=INR"
+                    className="footer-text-color"
+                  >
                     About Us
                   </a>
                 </p>
