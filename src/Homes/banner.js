@@ -2,6 +2,25 @@ import React, { useState } from "react";
 import "./banner.css";
 const Banner = () => {
   const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const [fm, setFm] = useState({
+    name: "",
+    mobile: "",
+    address: "",
+    message: "",
+  });
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setFm({ ...fm, [name]: value });
+  };
+  const handleSubmit =  (e) => {
+    e.preventDefault();
+    
+    if
+    
+  };
+
+
   return (
     <>
       <div
@@ -271,19 +290,23 @@ const Banner = () => {
               }}
             >
               <h3 className="text-center mt-4">Demo</h3>
-              <form className="mx-5">
+              <form className="mx-5" onSubmit={handleSubmit}>
                 <div className="rounded bg-light mb-4">
                   <input
                     type="text"
-                    name="restro_name"
+                    name="name"
+                    onChange={handleChange}
+                    value={fm.name}
                     className="form-control"
-                    placeholder="Enter Restro Name"
+                    placeholder="Enter Name"
                   />
                 </div>
                 <div className="rounded bg-light mb-4">
                   <input
                     type="text"
-                    name="restro_contact"
+                    name="mobile"
+                    onChange={handleChange}
+                    value={fm.mobile}
                     className="form-control"
                     placeholder="Enter Mobile Number"
                   />
@@ -291,14 +314,18 @@ const Banner = () => {
                 <div className="rounded bg-light mb-4">
                   <input
                     type="text"
-                    name="restro_address"
+                    name="address"
+                    onChange={handleChange}
+                    value={fm.address}
                     className="form-control"
                     placeholder="Enter Address"
                   />
                 </div>
                 <div className="rounded bg-light mb-4">
                   <textarea
-                    name="restro_message"
+                    name="message"
+                    onChange={handleChange}
+                    value={fm.message}
                     className="form-control"
                     placeholder="Write Message"
                   ></textarea>
