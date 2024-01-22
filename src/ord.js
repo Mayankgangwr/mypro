@@ -3,57 +3,50 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./menu.css";
 const OrdData = () => {
-  const [orderdatas, setOrderdatas] = useState("");
+  const [orderdatas, setOrderdatas] = useState({
+    clientname: "Sdfsd",
+    restroid: "1",
+    tableno: 2,
+    status: "pending"
+  });
   const [cartdatas, setCartdatas] = useState("");
   const navigate = useNavigate();
   const params = useParams();
   useEffect(() => {
     getOrds();
-    if (localStorage.getItem("orddata") === "") {
-      navigate(-1);
-      //console.log("no data");
-    }
-  });
+    // if (localStorage.getItem("orddata") === "") {
+    //   navigate(-1);
+    //   //console.log("no data");
+    // }
+  }, [1]);
   function getOrds() {
+    const oid = localStorage.getItem("ordid");
     axios
-      .get(
-        `${
-          process.env.REACT_APP_BASEURL
-        }/restro/order/single.php?ordid=${localStorage.getItem("ordid")}`
-      )
+      .get(`http://localhost:3500/api/carts/${localStorage.getItem("ordid")}`)
       .then(function (response) {
         if (
-          localStorage.getItem("orddata") == "" ||
-          localStorage.getItem("orddata") !== response.data[0].products
+          localStorage.getItem("ordid") == ""
         ) {
           navigate(`/${params.restroid}/${params.tableno}`);
         } else {
-          setOrderdatas(response.data[0]);
-          setCartdatas(JSON.parse(response.data[0].products));
+          setOrderdatas(response.data);
+          setCartdatas(response.data.products);
         }
       });
   }
-
-  const cart = JSON.parse(localStorage.getItem("orddata"));
-  const amount = cart.reduce((total, item) => {
-    return total + parseInt(item.qty) * parseInt(item.price);
-  }, 0);
-  const updateord = (id) => {
-    const productdata = {
-      productid: id,
-      productstatus: "ontable",
-    };
-    if (productdata.productstatus !== "") {
-      axios
-        .post(
-          `${process.env.REACT_APP_BASEURL}/restro/order/update.php`,
-          productdata
-        )
-        .then(function (response) {
-          getOrds();
-        });
-    }
+  const updateord = (cartId, updatedCartData) => {
+    console.log(orderdatas, "Cartupdate");
+    axios
+      .put(`http://localhost:3500/api/carts/${cartId}`, orderdatas)
+      .then(function (response) {
+        console.log('Cart updated successfully:', response.data);
+        getOrds();
+      })
+      .catch(function (error) {
+        console.error('Error updating cart:', error);
+      });
   };
+
   return (
     <>
       <nav key="1" className={`navbar  navbar-expand nav-bg`}>
@@ -75,7 +68,7 @@ const OrdData = () => {
         <div className="container-fluid">
           <hr />
           <div className="row">
-            {cart.map(({ id, img, qty, title, mrp, price }) => (
+            {cartdatas && cartdatas.map(({ id, img, qty, title, mrp, price }) => (
               <div
                 key={id}
                 className="col-xl-3 card-item col-lg-4 col-md-6 col-sm-6 col-xs-6 col-12 mt-3"
@@ -108,7 +101,7 @@ const OrdData = () => {
               </div>
             ))}
 
-            <div className={`col-12 mt-3`}>
+            {cartdatas && (<div className={`col-12 mt-3`}>
               <div className="card mb-4">
                 <div className="card-header">
                   <div className=" d-flex justify-content-center">
@@ -127,24 +120,36 @@ const OrdData = () => {
                   <ul className="list-group list-group-flush">
                     <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                       Products
-                      <span>${(amount * 82) / 100}</span>
+                      <span>${((cartdatas.reduce((total, item) => {
+                        return total + parseInt(item.qty) * parseInt(item.price);
+                      }, 0)) * 82) / 100}</span>
                     </li>
                     <li className="list-group-item d-flex justify-content-between align-items-center px-0">
                       GST(18%)
-                      <span>${(amount * 18) / 100}</span>
+                      <span>${((cartdatas.reduce((total, item) => {
+                        return total + parseInt(item.qty) * parseInt(item.price);
+                      }, 0)) * 18) / 100}</span>
                     </li>
                     <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                       <div>
                         <strong>Total amount</strong>
                       </div>
                       <span>
-                        <strong>${amount}</strong>
+                        <strong>${(cartdatas.reduce((total, item) => {
+                          return total + parseInt(item.qty) * parseInt(item.price);
+                        }, 0))}</strong>
                       </span>
                     </li>
                   </ul>
                   {orderdatas.status !== "ontable" && (
                     <button
-                      onClick={() => updateord(orderdatas.id)}
+                      onClick={() => {
+                        setOrderdatas((prevOrderdatas) => {
+                          return { ...prevOrderdatas, status: "ontable" };
+                        }, () => {
+                          updateord(orderdatas._id);
+                        });
+                      }}
                       className="btn btn-primary btn-lg btn-block mb-3"
                     >
                       Order On Table
@@ -160,7 +165,8 @@ const OrdData = () => {
                   )}
                 </div>
               </div>
-            </div>
+            </div>)}
+
           </div>
         </div>
       </section>
@@ -168,3 +174,4 @@ const OrdData = () => {
   );
 };
 export default OrdData;
+

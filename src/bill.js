@@ -10,14 +10,8 @@ const Bill = () => {
   }, []);
   function getOrdBill() {
     //const restroid = localStorage.getItem("restroid");
-    axios
-      .get(
-        `${
-          process.env.REACT_APP_BASEURL
-        }/restro/order/single.php?ordid=${localStorage.getItem("ordid")}`
-      )
+    axios.get(`http://localhost:3500/api/carts/${localStorage.getItem("ordid")}`)
       .then(function (response) {
-        console.log(response.data[0]);
         setBilldata(response.data);
       });
   }
@@ -31,20 +25,19 @@ const Bill = () => {
       <main class="mainbillclass">
         <div className="container-fluid">
           <div className="row">
-            {billdata.length == 1 &&
-              billdata.map((el) => (
-                <div key={el.id} className="main-bill ms-auto me-auto">
+            {billdata && (
+                <div key={billdata._id} className="main-bill ms-auto me-auto">
                   <h6 className="card-title text-center text-danger mt-1">
-                    {el.restro_name}
+                    {billdata.billdata}
                   </h6>
                   <hr />
                   <div className="card-header ms-1 px-3 mt-4 pb-0">
                     <div className="d-flex justify-content-between mt-2">
                       <h6 className="card-title text-center text-warning my-2">
-                        {el.client_name}
+                        {billdata.clientname}
                       </h6>
                       <h6 className="card-title text-primary my-2">
-                        {el.date}
+                        {`08-01-2024`}
                       </h6>
                     </div>
                   </div>
@@ -67,7 +60,7 @@ const Bill = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {JSON.parse(el.products).map((item) => (
+                        {billdata.products && billdata.products.map((item) => (
                           <tr key={item.id}>
                             <td className="px-3">{item.title}</td>
                             <td className="px-3">{item.qty}</td>
@@ -82,9 +75,11 @@ const Bill = () => {
                           </td>
                           <td className="px-3">
                             <b>
-                              {JSON.parse(el.products).reduce((total, item) => {
+                              {
+                                billdata.products && billdata.products.reduce((total, item) => {
                                 return total + item.qty;
-                              }, 0)}
+                              }, 0)
+                            }
                             </b>
                           </td>
                           <td className="px-3">
@@ -92,9 +87,11 @@ const Bill = () => {
                           </td>
                           <td className="px-3">
                             <b>
-                              {JSON.parse(el.products).reduce((total, item) => {
+                              {
+                                billdata.products &&  billdata.products.reduce((total, item) => {
                                 return total + item.qty * item.price;
-                              }, 0)}
+                              }, 0)
+                            }
                             </b>
                           </td>
                         </tr>
@@ -116,7 +113,7 @@ const Bill = () => {
                     </button>
                   </div>
                 </div>
-              ))}
+              )}
           </div>
         </div>
       </main>

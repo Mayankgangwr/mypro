@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import Rectro from "./menu";
-import Home from "./home";
 import FoodCard from "./foodcard";
 import Cart from "./cart";
 import OrderData from "./order";
@@ -21,7 +20,7 @@ const App = () => {
   }, []);
   function getUsers() {
     axios
-      .get(`${process.env.REACT_APP_BASEURL}/restro/read.php`)
+      .get(`http://localhost:3500/api/products`)
       .then(function (response) {
         console.log(response.data);
         setMenuData(response.data);
@@ -33,26 +32,20 @@ const App = () => {
   const AddCart = (e) => {
     const { value, checked } = e.target;
     if (value != "" && checked == true) {
-      const isdata = cart.filter((item) => {
-        if (item.id == value) {
-          return true;
-        } else {
-          return false;
-        }
-      });
-      if (isdata == false) {
+      const isdata = cart.find((item) => item.id == value);
+      if (isdata == undefined) {
         MenuData.filter((item) => {
-          if (item.id == value) {
+          if (item._id == value) {
             setCart([
               ...cart,
               {
-                id: item.id,
-                title: item.title,
+                id: item._id,
+                title: item.name,
                 mrp: item.mrp,
                 price: item.price,
-                img: item.img,
-                restro_id: item.restro_id,
-                category: item.category,
+                img: item.imageUrl,
+                restro_id: item.restroid,
+                category: item.catid,
                 qty: 1,
               },
             ]);
@@ -63,10 +56,17 @@ const App = () => {
     if (value != "" && checked == false) {
       setCart(
         cart.filter((item) => {
-          return item.id != value;
+          return item._id != value;
         })
       );
     }
+    if (cart.length > 0) {
+      setShow("");
+    } else {
+      setShow("d-none");
+    }
+    console.log(cart, "Cart");
+
   };
   const deleteCart = (e) => {
     const id = e.target.getAttribute("data-id");
@@ -139,34 +139,33 @@ const App = () => {
     setClientname(value);
   };
   const PlaceOrder = (restroid) => {
-    //e.preventDefault();
     const inputs = {
-      client_name: clientname,
-      restro_id: restrodata.id,
+      clientname: clientname,
+      restroid: restrodata.id,
       tableno: restrodata.tableno,
       status: orderstatus,
-      products: JSON.stringify(cart),
+      products: cart,
     };
-    axios
-      .post(`${process.env.REACT_APP_BASEURL}/restro/create.php`, inputs)
+       axios.post('http://localhost:3500/api/carts', inputs, { headers: { 'Content-Type': 'application/json' } })
       .then(function (response) {
-        console.log(response.data.ordid);
-        window.localStorage.setItem("ordid", response.data.ordid);
-        window.localStorage.setItem("orddata", JSON.stringify(cart));
+        window.localStorage.setItem('ordid', response.data._id);
+        console.log(response, "cartresponse");
         if (
-          localStorage.getItem("ordid") == response.data.ordid &&
-          localStorage.getItem("orddata") != ""
-        ) {
+          localStorage.getItem('ordid') === response.data._id) {
           window.location.href = `/${restrodata.id}/${restrodata.tableno}/order`;
         }
+      })
+      .catch(function (error) {
+        console.error('Error placing order:', error);
+        // Handle the error as needed
       });
   };
+
 
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route index element={<Home />} />
           <Route
             path="/:restroid/:tableno"
             element={

@@ -23,7 +23,7 @@ const Rectro = ({ FoodCard, cart, AddCart, show, contoinue }) => {
   function getUsers() {
     axios
       .get(
-        `${process.env.REACT_APP_BASEURL}/restro/read.php?restro_id=${parameter.restroid}`
+        `http://localhost:3500/api/products/restro/${parameter.restroid}`
       )
       .then(function (response) {
         console.log(response.data);
@@ -49,9 +49,9 @@ const Rectro = ({ FoodCard, cart, AddCart, show, contoinue }) => {
   console.log(searchdata);
   const sdata = searchdata.filter((item) => {
     if (input !== "") {
-      return item.cat_id === input;
+      return item.catid === input;
     } else {
-      return item.cat_id !== input;
+      return item.catid !== input;
     }
   });
 
@@ -98,11 +98,11 @@ const Rectro = ({ FoodCard, cart, AddCart, show, contoinue }) => {
             </div>
             {sdata.map((props) => (
               <FoodCard
-                id={props.id}
-                title={props.title}
+                id={props._id}
+                title={props.name}
                 price={props.price}
                 mrp={props.mrp}
-                img={props.img}
+                img={props.imageUrl}
                 AddCart={AddCart}
               />
             ))}
@@ -111,7 +111,7 @@ const Rectro = ({ FoodCard, cart, AddCart, show, contoinue }) => {
       </section>
       <nav
         key="1"
-        className={`navbar ${show} navbar-expand fixed-bottom bg-dark`}
+        className={`navbar navbar-expand fixed-bottom bg-dark`}
       >
         <div className="container-fluid">
           <div className="collapse navbar-collapse">
